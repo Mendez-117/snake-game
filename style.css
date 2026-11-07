@@ -1,4 +1,15 @@
 #main_heading{
-    background-color: aliceblue;
+    background-color: #A2C74A;
     text-align: center;
+    color: black;
+}
+
+body{
+    background-color: #4B9B58;
+}
+
+#myCanvas{
+    border-style: ridge;
+    border-color: white;
+    align-items: center !important;
 }
