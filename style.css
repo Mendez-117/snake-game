@@ -9,7 +9,29 @@ body{
 }
 
 #myCanvas{
-    border-style: ridge;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: ridge;
     border-color: white;
-    align-items: center !important;
+    width: fit-content;
+    margin: auto;
+}
+
+#score_displayer{
+    margin: auto;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+#game_controls{
+    margin: auto;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+.controls{
+    margin-left: 25px;
 }
