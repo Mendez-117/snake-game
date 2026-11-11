@@ -1,10 +1,17 @@
+let grid_width = 460;
+let grid_height = 460;
+let starting_segments = 3;
+let xStart = 23;
+let yStart = 0;
+let direction = right;
+let segments = [];
+let score = 0;
+let fruit;
 function setup() {
     var canvas = createCanvas(460,460);
     canvas.parent('myCanvas');
     strokeWeight(0);
-    let apple_position_x = ((Math.floor((Math.random())*20))*23)+11.5;
-    let apple_position_y = ((Math.floor((Math.random())*20))*23)+11.5;
-
+    frameRate(10);
     for(let i = 0; i<20; i++){
         for(let j = 0; j<20; j++){
             if((i+j)%2==0){
@@ -16,21 +23,45 @@ function setup() {
             }
         }
     }
-    fill('#FF3B30');
-    ellipse(apple_position_x,apple_position_y,23,23);
+
+    
+
 }
 
-let length = 1;
-let snake_position_x = 0;
-let snake_position_y = 0;
+function fruit_coords(){
+    let apple_position_x = ((Math.floor((Math.random())*20))*23)+11.5;
+    let apple_position_y = ((Math.floor((Math.random())*20))*23)+11.5;fill('#FF3B30');
+    ellipse(apple_position_x,apple_position_y,15,15);
+}
 
-function game_start(){
-    rect()
+function gameStart(){
+    fruit_coords();
+    segments = []
+    for(let x = xStart; x < xStart + starting_segments; x++){
+        let segmentPosition = createVector(x,yStart);
+        segments.unshift(segmentPosition);
+    }
+    score = 0;
+    gameStarted = true;
+    loop();
+}
+
+function showSegments(){
+    noFill();
+    stroke(96,255,64);
+    beginShape();
+    for(let segment of segments){
+        vertex(segment.x, segment.y);
+        
+    }
 }
 
 
 function draw(){
     strokeWeight(0);
     fill('#ADFF2F');
-    document.getElementById('start').onclick(game_start())
+    showSegments();
+    check_for_collision();
+    check_for_fruit();
+    updateSegments();
 }
