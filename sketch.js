@@ -52,9 +52,32 @@ function showSegments(){
     beginShape();
     for(let segment of segments){
         vertex(segment.x, segment.y);
-        
+        segments.unshift(segmentPosition);
+    }
+    endShape();
+}
+
+function updateSegments() {
+    segments.pop();
+    let head = segments[0].copy();
+    segments.unshift(head);
+
+    switch(direction){
+        case 'right':
+            head.x = head.x+23;
+            break;
+        case 'up':
+            head.y = head.y-23;
+            break;
+        case 'down':
+            head.y = head.y+23;
+            break;
+        case 'left':
+            head.x = head.x-23;
+            break;
     }
 }
+
 
 
 function draw(){
