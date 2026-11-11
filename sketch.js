@@ -78,6 +78,37 @@ function updateSegments() {
     }
 }
 
+function check_for_collision() {
+    let head = segments[0];
+    if(head.x == grid_width || head.x <= 0){
+        gameOver();
+    } else if (head.y == grid_height || head.y <= 0){
+        gameOver();
+    } else if(check_for_self_collision()){
+        gameOver();
+    }
+}
+
+function gameOver(){
+    noStroke();
+    fill(32);
+    rect(2, grid_height/2-5, grid_width/2-5, 4,12,2)
+    fill(255);
+    text('Game over! Your score ${score}');
+    gameStarted = false;
+    noLoop();
+}
+
+function check_for_self_collision(){
+    let segments_after_head = segments.slice(1);
+    let head = segments[0];
+    for(let segment_colliding of segments_after_head){
+        if(segment_colliding.equals(head)==true){
+            return true;
+        }
+    }
+    return false;
+}
 
 
 function draw(){
